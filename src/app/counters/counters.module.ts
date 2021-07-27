@@ -5,6 +5,7 @@ import {CounterListItemComponent} from './counter-list-item/counter-list-item.co
 import {CountersHeaderComponent} from './counters-header/counters-header.component';
 import {NewCounterFormComponent} from './new-counter-form/new-counter-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CountersModule {

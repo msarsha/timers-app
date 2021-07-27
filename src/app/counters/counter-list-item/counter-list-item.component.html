@@ -1,3 +1,4 @@
 <div class="timer" [class.done]="done">
-  {{timer$ | async}}
+  <span>{{timer$ | async | time}}</span>
+  <button (click)="toggleTimer()" [disabled]="done">{{buttonText$ | async}}</button>
 </div>
