@@ -1,53 +1,46 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Timer} from "../models";
 import {BehaviorSubject, interval, NEVER, Observable} from "rxjs";
 import {
-  map,
+  map, shareReplay,
   startWith,
   switchMap,
   take,
   tap
 } from "rxjs/operators";
+import {TimerService} from "../services/timer.service";
 
 @Component({
   selector: 'app-counter-list-item',
   templateUrl: './counter-list-item.component.html',
-  styleUrls: ['./counter-list-item.component.scss']
+  styleUrls: ['./counter-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TimerService]
 })
-export class CounterListItemComponent implements OnInit, OnDestroy {
-
+export class CounterListItemComponent implements OnInit {
   @Input() timer!: Timer;
+  @Output() pause = new EventEmitter<boolean>();
 
   timer$!: Observable<number>;
-  paused$ = new BehaviorSubject(false);
-  buttonText$ = this.paused$.pipe(map(paused => paused ? 'Resume' : 'Pause'));
+  done$ = this.timerService.done$.pipe(shareReplay(1));
+  paused$ = this.timerService.paused$.pipe(
+    tap((paused) => {
+      this.pause.emit(paused);
+    })
+  );
+  buttonText$ = this.paused$.pipe(
+    map(paused => paused ? 'Resume' : 'Pause')
+  );
 
   elapsed = 0;
 
+  constructor(private timerService: TimerService) {}
+
   ngOnInit(): void {
-    this.timer$ = this.paused$
-      .pipe(
-        switchMap(paused => {
-          return paused ? NEVER : this.createInterval();
-        }),
-        map(() => this.timer.time - this.elapsed),
-        startWith(this.timer.time),
-        take(this.timer.time + 1),
-      );
-  }
-
-  ngOnDestroy(): void {
-  }
-
-  get done(){
-    return this.elapsed === this.timer.time;
+    this.timer$ = this.timerService.createTimer(this.timer.time);
   }
 
   toggleTimer(): void {
-    this.paused$.next(!this.paused$.value);
-  }
-
-  private createInterval(): Observable<number> {
-    return interval(1000).pipe(tap(() => this.elapsed++));
+    this.timerService.toggleTimer();
   }
 }

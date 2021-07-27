@@ -6,13 +6,15 @@ import {CountersHeaderComponent} from './counters-header/counters-header.compone
 import {NewCounterFormComponent} from './new-counter-form/new-counter-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
+import { RemainingTimeComponent } from './remaining-time/remaining-time.component';
 
 @NgModule({
   declarations: [
     CounterListComponent,
     CounterListItemComponent,
     CountersHeaderComponent,
-    NewCounterFormComponent
+    NewCounterFormComponent,
+    RemainingTimeComponent
   ],
   exports: [
     CounterListComponent

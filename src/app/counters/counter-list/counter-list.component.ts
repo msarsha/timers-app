@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Timer} from "../models";
 
 @Component({
   selector: 'app-counter-list',
   templateUrl: './counter-list.component.html',
-  styleUrls: ['./counter-list.component.scss']
+  styleUrls: ['./counter-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterListComponent implements OnInit {
 

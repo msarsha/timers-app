@@ -1,4 +1,4 @@
-<div class="timer" [class.done]="done">
+<div class="timer" [class.done]="done$ | async">
   <span>{{timer$ | async | time}}</span>
-  <button (click)="toggleTimer()" [disabled]="done">{{buttonText$ | async}}</button>
+  <button (click)="toggleTimer()" [disabled]="done$ | async">{{buttonText$ | async}}</button>
 </div>

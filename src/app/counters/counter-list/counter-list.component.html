@@ -1,2 +1,6 @@
-<app-counter-list-item *ngFor="let timer of timers$ | async" [timer]="timer"></app-counter-list-item>
+<app-counter-list-item
+  *ngFor="let timer of timers$ | async"
+  [timer]="timer">
+</app-counter-list-item>
+
 <app-new-counter-form (add)="onAdd($event)"></app-new-counter-form>

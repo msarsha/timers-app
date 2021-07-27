@@ -1,11 +1,12 @@
-import {EventEmitter} from '@angular/core';
+import {ChangeDetectionStrategy, EventEmitter} from '@angular/core';
 import {Component, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-new-counter-form',
   templateUrl: './new-counter-form.component.html',
-  styleUrls: ['./new-counter-form.component.scss']
+  styleUrls: ['./new-counter-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewCounterFormComponent {
   @Output() add = new EventEmitter<number>();
