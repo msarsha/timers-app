@@ -1,0 +1,8 @@
+.timer {
+  padding: 5px;
+  margin-bottom: 2px;
+  border: 1px solid black;
+  &.done {
+    background-color: orangered;
+  }
+}
