@@ -1,4 +1,5 @@
 <div class="remaining-time">
   <span>Time remaining: </span>
   <span>{{((time$ | async) || 0) | time: true}}</span>
+  <button (click)="onPauseAll()">Pause all</button>
 </div>

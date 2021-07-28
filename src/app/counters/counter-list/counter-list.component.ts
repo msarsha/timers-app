@@ -23,4 +23,8 @@ export class CounterListComponent {
   trackByFn(index: number, timer: Timer) {
     return timer.id;
   };
+
+  onPauseAll() {
+    this.timersService.pauseAll();
+  }
 }

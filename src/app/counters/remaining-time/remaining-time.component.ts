@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Timer} from "../models";
 import {TimerService} from "../services/timer.service";
 import {Observable, of} from "rxjs";
@@ -13,6 +13,7 @@ import {map} from "rxjs/operators";
   providers: [TimerService]
 })
 export class RemainingTimeComponent {
+  @Output() pauseAll = new EventEmitter<void>();
   @Input() set timer(timer: Timer|null) {
     if (timer) {
       this.time$ = this.timersQuery.selectEntity(timer.id).pipe(
@@ -26,5 +27,9 @@ export class RemainingTimeComponent {
   time$!: Observable<number>;
 
   constructor(private timersQuery: TimersQuery) {
+  }
+
+  onPauseAll() {
+    this.pauseAll.emit();
   }
 }
