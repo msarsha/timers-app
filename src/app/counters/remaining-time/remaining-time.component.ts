@@ -1,27 +1,30 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Timer} from "../models";
+import {TimerService} from "../services/timer.service";
+import {Observable, of} from "rxjs";
+import {TimersQuery} from "../state/timers.query";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-remaining-time',
   templateUrl: './remaining-time.component.html',
   styleUrls: ['./remaining-time.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TimerService]
 })
-export class RemainingTimeComponent implements OnInit {
-  @Input() set activeTimers(timers: Timer[]) {
-    this.setRemainingTime(timers);
-  }
+export class RemainingTimeComponent {
+  @Input() set timer(timer: Timer|null) {
+    if (timer) {
+      this.time$ = this.timersQuery.selectEntity(timer.id).pipe(
+        map(timer => (timer!.time - (timer!.elapsed || 0)))
+      );
+    } else {
+      this.time$ = of(0);
+    }
+  };
 
-  remainingTime = 0;
+  time$!: Observable<number>;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  private setRemainingTime(timers: Timer[]) {
-    const times = timers.map(timer => timer.time);
-    this.remainingTime = Math.max(...times);
+  constructor(private timersQuery: TimersQuery) {
   }
 }

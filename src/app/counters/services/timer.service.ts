@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, interval, NEVER, Observable} from "rxjs";
 import {map, startWith, switchMap, take, tap} from "rxjs/operators";
+import {TimersStore} from "../state/timers.store";
 
 @Injectable()
 export class TimerService {
@@ -10,9 +11,15 @@ export class TimerService {
   paused$ = this._pause$.asObservable();
   done$ = this._done$.asObservable();
 
-  elapsed = 0;
+  private elapsed = 0;
+  private id!: string;
 
-  createTimer(time: number): Observable<number> {
+  constructor(private timersStore: TimersStore) {
+  }
+
+  startTimer(time: number, id: string): Observable<number> {
+    this.elapsed = 0;
+    this.id = id;
     return this.paused$
       .pipe(
         switchMap(paused => {
@@ -22,15 +29,17 @@ export class TimerService {
         startWith(time),
         take(time + 1),
         tap(currentTime => {
-          if(currentTime === 0) {
+          if (currentTime === 0) {
             this._done$.next(true);
           }
+          this.timersStore.update(id, {elapsed: this.elapsed});
         })
       );
   }
 
   toggleTimer(): void {
     this._pause$.next(!this._pause$.value);
+    this.timersStore.update(this.id, {paused: this._pause$.value});
   }
 
   private createInterval(): Observable<number> {

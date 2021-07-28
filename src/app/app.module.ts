@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
 import {CountersModule} from "./counters/counters.module";
 
 @NgModule({
@@ -11,8 +11,8 @@ import {CountersModule} from "./counters/counters.module";
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({}, {}),
-    CountersModule
+    CountersModule,
+    AkitaNgDevtools.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
