@@ -12,6 +12,7 @@ import {TimersQuery} from "../state/timers.query";
 export class CounterListComponent {
   timers$ = this.timersQuery.selectAll();
   longestTimer$ = this.timersQuery.longestTimer$;
+  allPaused$ = this.timersQuery.areAllPaused$;
 
   constructor(private timersService: TimersService, private timersQuery: TimersQuery) {
   }

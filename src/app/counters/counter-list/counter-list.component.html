@@ -1,4 +1,8 @@
-<app-remaining-time [timer]="longestTimer$ | async" (pauseAll)="onPauseAll()"></app-remaining-time>
+<app-remaining-time
+  [timer]="longestTimer$ | async"
+  (pauseAll)="onPauseAll()"
+  [allPaused]="(allPaused$ | async) || false">
+</app-remaining-time>
 
 <app-counter-list-item
   *ngFor="let timer of timers$ | async; trackBy: trackByFn"

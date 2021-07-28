@@ -26,6 +26,10 @@ export class TimersQuery extends QueryEntity<TimersState> {
       })
     );
 
+  areAllPaused$ = this.selectAll().pipe(
+    map(timers => timers.every(t => t.paused))
+  );
+
   constructor(protected store: TimersStore) {
     super(store);
   }

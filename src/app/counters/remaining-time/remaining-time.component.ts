@@ -14,6 +14,8 @@ import {map} from "rxjs/operators";
 })
 export class RemainingTimeComponent {
   @Output() pauseAll = new EventEmitter<void>();
+  @Input() allPaused = false;
+
   @Input() set timer(timer: Timer|null) {
     if (timer) {
       this.time$ = this.timersQuery.selectEntity(timer.id).pipe(
