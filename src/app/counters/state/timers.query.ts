@@ -27,7 +27,7 @@ export class TimersQuery extends QueryEntity<TimersState> {
     );
 
   areAllPaused$ = this.selectAll().pipe(
-    map(timers => timers.every(t => t.paused))
+    map(timers => timers.every(t => t.paused || t.time === t.elapsed))
   );
 
   constructor(protected store: TimersStore) {
