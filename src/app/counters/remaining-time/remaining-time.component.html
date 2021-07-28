@@ -1,3 +1,4 @@
 <div class="remaining-time">
-  <span>{{((time$ | async) || 0) | time}}</span>
+  <span>Time remaining: </span>
+  <span>{{((time$ | async) || 0) | time: true}}</span>
 </div>
