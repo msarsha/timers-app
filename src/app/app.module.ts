@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 import { AppComponent } from './app.component';
-import {CountersModule} from "./counters/counters.module";
+import {TimersModule} from "./timers/timers.module";
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import {CountersModule} from "./counters/counters.module";
   ],
   imports: [
     BrowserModule,
-    CountersModule,
+    TimersModule,
     AkitaNgDevtools.forRoot()
   ],
   providers: [],

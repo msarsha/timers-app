@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CounterListItemComponent } from './counter-list-item.component';
+import { TimerListItemComponent } from './timer-list-item.component';
 
 describe('CounterListItemComponent', () => {
-  let component: CounterListItemComponent;
-  let fixture: ComponentFixture<CounterListItemComponent>;
+  let component: TimerListItemComponent;
+  let fixture: ComponentFixture<TimerListItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CounterListItemComponent ]
+      declarations: [ TimerListItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CounterListItemComponent);
+    fixture = TestBed.createComponent(TimerListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

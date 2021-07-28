@@ -4,12 +4,12 @@ import {TimersService} from "../state/timers.service";
 import {TimersQuery} from "../state/timers.query";
 
 @Component({
-  selector: 'app-counter-list',
-  templateUrl: './counter-list.component.html',
-  styleUrls: ['./counter-list.component.scss'],
+  selector: 'app-timer-list',
+  templateUrl: './timer-list.component.html',
+  styleUrls: ['./timer-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CounterListComponent {
+export class TimerListComponent {
   timers$ = this.timersQuery.selectAll();
   longestTimer$ = this.timersQuery.longestTimer$;
   allPaused$ = this.timersQuery.areAllPaused$;

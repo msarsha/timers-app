@@ -8,13 +8,13 @@ import {TimerService} from "../services/timer.service";
 import {TimersQuery} from "../state/timers.query";
 
 @Component({
-  selector: 'app-counter-list-item',
-  templateUrl: './counter-list-item.component.html',
-  styleUrls: ['./counter-list-item.component.scss'],
+  selector: 'app-timer-list-item',
+  templateUrl: './timer-list-item.component.html',
+  styleUrls: ['./timer-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TimerService]
 })
-export class CounterListItemComponent implements OnInit {
+export class TimerListItemComponent implements OnInit {
   @Input() timer!: Timer;
 
   timer$!: Observable<Timer | undefined>;

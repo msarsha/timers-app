@@ -4,9 +4,9 @@
   [allPaused]="(allPaused$ | async) || false">
 </app-remaining-time>
 
-<app-counter-list-item
+<app-timer-list-item
   *ngFor="let timer of timers$ | async; trackBy: trackByFn"
   [timer]="timer">
-</app-counter-list-item>
+</app-timer-list-item>
 
-<app-new-counter-form (add)="onAdd($event)"></app-new-counter-form>
+<app-new-timer-form (add)="onAdd($event)"></app-new-timer-form>

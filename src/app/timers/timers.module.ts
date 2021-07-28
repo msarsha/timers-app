@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CounterListComponent} from './counter-list/counter-list.component';
-import {CounterListItemComponent} from './counter-list-item/counter-list-item.component';
-import {NewCounterFormComponent} from './new-counter-form/new-counter-form.component';
+import {TimerListComponent} from './timer-list/timer-list.component';
+import {TimerListItemComponent} from './timer-list-item/timer-list-item.component';
+import {NewTimerFormComponent} from './new-timer-form/new-timer-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import { RemainingTimeComponent } from './remaining-time/remaining-time.component';
 
 @NgModule({
   declarations: [
-    CounterListComponent,
-    CounterListItemComponent,
-    NewCounterFormComponent,
+    TimerListComponent,
+    TimerListItemComponent,
+    NewTimerFormComponent,
     RemainingTimeComponent
   ],
   exports: [
-    CounterListComponent
+    TimerListComponent
   ],
   imports: [
     CommonModule,
@@ -23,5 +23,5 @@ import { RemainingTimeComponent } from './remaining-time/remaining-time.componen
     SharedModule
   ]
 })
-export class CountersModule {
+export class TimersModule {
 }

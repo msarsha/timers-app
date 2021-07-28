@@ -3,12 +3,12 @@ import {Component, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-new-counter-form',
-  templateUrl: './new-counter-form.component.html',
-  styleUrls: ['./new-counter-form.component.scss'],
+  selector: 'app-new-timer-form',
+  templateUrl: './new-timer-form.component.html',
+  styleUrls: ['./new-timer-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewCounterFormComponent {
+export class NewTimerFormComponent {
   @Output() add = new EventEmitter<number>();
 
   form: FormGroup;
