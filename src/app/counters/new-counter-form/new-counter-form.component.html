@@ -1,11 +1,11 @@
 <h4>Add new timer</h4>
 <form [formGroup]="form" (ngSubmit)="addTime()">
-  <div>
-    Duration: <input formControlName="time"><span>seconds</span>
+    <div class="timer-form">
+      <span>Duration:</span> <input formControlName="time"><span>seconds</span>
+    </div>
     <div class="errors" *ngIf="timeControl.errors">
       <div class="error" *ngIf="timeControl.hasError('pattern')">Numeric values only</div>
       <div class="error" *ngIf="timeControl.hasError('required') && timeControl.dirty">Field is required</div>
     </div>
-  </div>
   <button [disabled]="form.invalid">Add</button>
 </form>
