@@ -1,4 +1,4 @@
-<div class="timer" [class.done]="done$ | async">
-  <span>{{timer$ | async | time}}</span>
+<div class="timer" [class.done]="done$ | async" *ngIf="timer$ | async as timer">
+  <span>{{time$ | async | time}}</span>
   <button (click)="toggleTimer()" [disabled]="done$ | async">{{buttonText$ | async}}</button>
 </div>

@@ -10,7 +10,8 @@ export class TimersService{
   create(time: number) {
     const timer: Timer = {
       id: new Date().getTime().toString(),
-      time
+      time,
+      elapsed: 0
     };
 
     this.store.add(timer);

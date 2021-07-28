@@ -5,22 +5,18 @@ import {TimersStore} from "../state/timers.store";
 
 @Injectable()
 export class TimerService {
-
   private _pause$ = new BehaviorSubject(false);
-  private _done$ = new BehaviorSubject(false);
-  paused$ = this._pause$.asObservable();
-  done$ = this._done$.asObservable();
 
   private elapsed = 0;
-  private id!: string;
+  private id = '';
 
   constructor(private timersStore: TimersStore) {
   }
 
-  startTimer(time: number, id: string): Observable<number> {
+  startTimer(time: number, id: string): void {
     this.elapsed = 0;
     this.id = id;
-    return this.paused$
+    this._pause$
       .pipe(
         switchMap(paused => {
           return paused ? NEVER : this.createInterval();
@@ -28,13 +24,10 @@ export class TimerService {
         map(() => time - this.elapsed),
         startWith(time),
         take(time + 1),
-        tap(currentTime => {
-          if (currentTime === 0) {
-            this._done$.next(true);
-          }
+        tap(() => {
           this.timersStore.update(id, {elapsed: this.elapsed});
         })
-      );
+      ).subscribe();
   }
 
   toggleTimer(): void {

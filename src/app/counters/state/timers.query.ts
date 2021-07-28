@@ -31,6 +31,6 @@ export class TimersQuery extends QueryEntity<TimersState> {
   }
 
   private calcRemainingTime(timer: Timer): number {
-    return timer.time - (timer.elapsed || 0);
+    return timer.time - timer.elapsed;
   }
 }

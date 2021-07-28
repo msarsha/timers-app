@@ -16,7 +16,7 @@ export class RemainingTimeComponent {
   @Input() set timer(timer: Timer|null) {
     if (timer) {
       this.time$ = this.timersQuery.selectEntity(timer.id).pipe(
-        map(timer => (timer!.time - (timer!.elapsed || 0)))
+        map(timer => (timer!.time - timer!.elapsed))
       );
     } else {
       this.time$ = of(0);
