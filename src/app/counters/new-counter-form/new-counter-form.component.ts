@@ -15,7 +15,7 @@ export class NewCounterFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
-      time: ['', Validators.pattern("^[0-9]*$")]
+      time: ['', [Validators.pattern("^[0-9]*$"), Validators.required]]
     });
   }
 

@@ -4,6 +4,7 @@
     Duration: <input formControlName="time"><span>seconds</span>
     <div class="errors" *ngIf="timeControl.errors">
       <div class="error" *ngIf="timeControl.hasError('pattern')">Numeric values only</div>
+      <div class="error" *ngIf="timeControl.hasError('required') && timeControl.dirty">Field is required</div>
     </div>
   </div>
   <button [disabled]="form.invalid">Add</button>
