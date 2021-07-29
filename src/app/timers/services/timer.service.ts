@@ -6,8 +6,8 @@ import {TimerController, TimersService} from "../state/timers.service";
 
 @Injectable()
 export class TimerService {
-  private _pause$ = new BehaviorSubject(false);
-  private paused$ = this._pause$.pipe(tap((paused) => {
+  private _toggle$ = new BehaviorSubject(false);
+  private toggle$ = this._toggle$.pipe(tap((paused) => {
     this.timersStore.update(this.id, {paused});
   }))
 
@@ -22,7 +22,7 @@ export class TimerService {
     this.id = id;
     this.registerController();
 
-    this.paused$
+    this.toggle$
       .pipe(
         switchMap(paused => {
           return paused ? NEVER : this.createInterval();
@@ -37,15 +37,15 @@ export class TimerService {
   }
 
   toggleTimer(): void {
-    this._pause$.next(!this._pause$.value);
+    this._toggle$.next(!this._toggle$.value);
   }
 
   pause(){
-    this._pause$.next(true);
+    this._toggle$.next(true);
   }
 
   resume(){
-    this._pause$.next(false);
+    this._toggle$.next(false);
   }
 
   private createInterval(): Observable<number> {
